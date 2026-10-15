@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  WORKER
+  REQUESTER
+  ADMIN
+}
+
+enum JobStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String        @unique
+  passwordHash String
+  role         Role          @default(WORKER)
+  createdAt    DateTime      @default(now())
+  jobs         Job[]         @relation("RequesterJobs")
+  applications Application[]
+}
+
+model Job {
+  id           Int           @id @default(autoincrement())
+  title        String
+  description  String
+  category     String
+  budget       Decimal?
+  location     String?
+  isRemote     Boolean       @default(false)
+  status       JobStatus     @default(OPEN)
+  createdAt    DateTime      @default(now())
+  requester    User          @relation("RequesterJobs", fields: [requesterId], references: [id])
+  requesterId  Int
+  applications Application[]
+}
+
+model Application {
+  id        Int               @id @default(autoincrement())
+  message   String?
+  status    ApplicationStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+  job       Job               @relation(fields: [jobId], references: [id])
+  jobId     Int
+  worker    User              @relation(fields: [workerId], references: [id])
+  workerId  Int
+
+  @@unique([jobId, workerId])
+}

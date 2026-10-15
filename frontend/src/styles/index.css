@@ -1,0 +1,16 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: #f4f6f8; color: #1f2933; }
+main { max-width: 480px; margin: 2rem auto; padding: 0 1rem; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.5rem; background: #1f2933; color: #fff; }
+.navbar a { color: #fff; text-decoration: none; margin-left: 1rem; }
+.navbar .brand { font-weight: 700; font-size: 1.2rem; margin-left: 0; }
+.nav-links { display: flex; align-items: center; gap: 0.5rem; }
+.muted { color: #cbd2d9; margin-left: 1rem; font-size: 0.9rem; }
+.card { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+form { display: flex; flex-direction: column; gap: 0.5rem; }
+label { font-size: 0.9rem; font-weight: 600; }
+input, select { padding: 0.6rem; border: 1px solid #cbd2d9; border-radius: 4px; font-size: 1rem; }
+button { padding: 0.6rem 1rem; border: 0; border-radius: 4px; background: #2563eb; color: #fff; font-size: 1rem; cursor: pointer; }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+.error { background: #fde8e8; color: #b91c1c; padding: 0.6rem; border-radius: 4px; }
+.center { text-align: center; }

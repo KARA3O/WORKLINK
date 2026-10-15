@@ -1,0 +1,47 @@
+Phase 1: Get it running
+
+Copy .env.example to .env in backend/ and fill in your PostgreSQL password and a JWT_SECRET
+Create the worklink database in PostgreSQL
+Run npm install in both backend/ and frontend/
+Run npx prisma migrate dev --name init to create the tables
+Start the backend and check /api/health, then start the frontend and check that the page loads
+Make your first commit and push to GitHub
+
+Phase 2: Users and authentication
+
+Add the register endpoint (validate input, hash the password with bcrypt, save the user)
+Add the login endpoint (check the password, return a JWT)
+Write the auth middleware (verify the token) and the role middleware (worker, requester, admin)
+Add a “get current user” endpoint
+On the frontend, build the Register and Login pages and AuthContext, which stores the token and the logged-in user
+Add ProtectedRoute so signed-out users are redirected to login
+Test the whole flow: register, log in, reach a protected page
+
+Phase 3: Public job browsing (no account needed)
+
+Add the Job endpoints: list jobs, get one job, and filters for category, budget, location and remote
+Seed a few sample jobs so there’s something to see
+Build BrowseJobs, JobCard and JobFilters
+Build the JobDetails page, with an Apply button that sends signed-out users to login
+
+Phase 4: Posting and applications
+
+Requesters can create, edit and close jobs
+Workers can apply to jobs, and the “one application per job” rule from the schema is enforced
+Requesters can view applicants and accept or reject them
+Build the worker and requester dashboards (my jobs, my applications)
+Track the job status: open, in progress, completed
+
+Phase 5: Smarter discovery
+
+Add skills to worker profiles and to jobs
+Add location search by radius
+Add job matching with a simple explainable score (“matches 3 of your skills”)
+
+Phase 6: Finishing touches
+
+Reviews and ratings in both directions
+Notifications
+In-app messaging between a requester and a worker
+The admin dashboard (manage users and jobs, verify workers)
+Payments last, probably as a simulated “mark as paid” flow first

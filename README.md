@@ -1,2 +1,20 @@
-# WORKLINK
-WorkLink is a web-based platform that connects skilled workers with people and businesses seeking temporary or freelance services. Users can post jobs, apply for opportunities, communicate securely, and complete tasks through a simple, fast, and reliable job-matching system inspired by modern on-demand service platforms.
+# WorkLink
+
+A job marketplace connecting requesters (who post jobs) with workers (who apply). Anyone can browse jobs; signing in is required to apply, post, or message.
+
+**Stack:** React (Vite) · Node.js + Express · PostgreSQL · Prisma · JWT + bcrypt
+
+## Setup
+```bash
+# backend
+cd backend
+cp .env.example .env   # edit DATABASE_URL and JWT_SECRET
+npm install
+npx prisma migrate dev --name init
+npm run dev
+
+# frontend (new terminal)
+cd frontend
+npm install
+npm run dev
+```
